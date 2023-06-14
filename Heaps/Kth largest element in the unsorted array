@@ -1,0 +1,21 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	static int kthLargest(ArrayList<Integer> arr, int size, int K) {
+	PriorityQueue<Integer> maxHeap = new PriorityQueue<>(size, (a, b) -> b - a);
+
+        // Add elements from the array to the max heap
+        for (int i = 0; i < size; i++) {
+            maxHeap.offer(arr.get(i));
+
+            // If the size of the max heap exceeds K, remove the smallest element
+            for(int j=0;j<K-1;j++){
+                kthLargest=maxHeap.poll;
+            }
+        }
+
+        // Return the Kth largest element
+        return kthLargest;
+    }
+	}
