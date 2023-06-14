@@ -1,0 +1,51 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution 
+{
+	public static ArrayList<Integer> mergeKSortedArrays(ArrayList<ArrayList<Integer>> kArrays, int k)
+	{
+	ArrayList<Integer> mergedArray = new ArrayList<>();
+
+        // Create a min heap using a priority queue
+        PriorityQueue<ArrayContainer> minHeap = new PriorityQueue<>(k);
+        
+        // Add the first element from each array to the min heap
+        for (int i = 0; i < k; i++) {
+            ArrayList<Integer> array = kArrays.get(i);
+            if (!array.isEmpty()) {
+                int element = array.remove(0);
+                minHeap.add(new ArrayContainer(element, i));
+            }
+        }
+
+        // Merge the arrays until the min heap becomes empty
+        while (!minHeap.isEmpty()) {
+            ArrayContainer min = minHeap.poll();
+            mergedArray.add(min.element);
+
+            ArrayList<Integer> array = kArrays.get(min.arrayIndex);
+            if (!array.isEmpty()) {
+                int element = array.remove(0);
+                minHeap.add(new ArrayContainer(element, min.arrayIndex));
+            }
+        }
+
+        return mergedArray;
+    }
+
+    private static class ArrayContainer implements Comparable<ArrayContainer> {
+        int element;
+        int arrayIndex;
+
+        public ArrayContainer(int element, int arrayIndex) {
+            this.element = element;
+            this.arrayIndex = arrayIndex;
+        }
+        @Override
+        public int compareTo(ArrayContainer other) {
+            return Integer.compare(this.element, other.element);
+        }
+    }
+}
