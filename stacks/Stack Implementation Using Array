@@ -1,0 +1,51 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Stack {
+    private int maxSize;    // maximum size of the stack
+    private int top;        // index of the top element
+    private int[] stackArray;   // array to store stack elements
+
+    // Constructor
+    public Stack(int size) {
+        maxSize = size;
+        stackArray = new int[maxSize];
+        top = -1;   // initialize top as -1 to indicate an empty stack
+    }
+    void push(int num) {
+       if(isFull()==1){
+           return;      
+       }
+       stackArray[++top]=num;
+        // Write your code here.
+    }
+    int pop() {
+       if(isEmpty()==1){
+           return -1;
+       }
+      int value=stackArray[top--];
+      return value;  // Write your code here.
+    }
+    int top() {
+       if(isEmpty()==1){
+           return -1;
+       }
+      
+       return stackArray[top]; // Write your code here.
+    }
+    int isEmpty() {
+       if(top==-1){
+           return 1;
+       }
+       else
+       return 0; // Write your code here.
+    }
+    int isFull() {
+       if(top==maxSize-1){
+           return 1;
+       }
+       else
+       return 0;
+        // Write your code here.
+    }
+}
