@@ -1,0 +1,25 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+	
+	public static int[] nextGreater(int[] arr, int n) {	
+		
+		Stack<Integer> s=new Stack<>();
+		
+int nxtGreater[]=new int[n];
+for(int i=n-1;i>=0;i--){
+    while(!s.empty() && arr[s.peek()]<=arr[i]){
+        s.pop();
+    }
+    if(s.isEmpty())
+    {
+        nxtGreater[i]=-1;
+    }else{
+        nxtGreater[i]=arr[s.peek()];
+    }
+s.push(i);
+}
+return nxtGreater;  
+}
+	}
