@@ -1,0 +1,57 @@
+import java.util.* ;
+import java.io.*; 
+class Node{
+    int data;
+    Node next;
+    public Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+public class Queue {
+private Node front;
+private Node rear;
+    Queue() {
+      this.front=null;
+      this.rear=null;  // Implement the Constructor
+    }
+
+    /*----------------- Public Functions of Queue -----------------*/
+
+    boolean isEmpty() {
+     return front == null;   // Implement the isEmpty() function
+    }
+
+    void enqueue(int data) {
+      Node newNode= new Node(data);
+      if(rear==null){
+          front=newNode;
+          rear=newNode;
+      } 
+      else{
+          rear.next=newNode;
+          rear=newNode;
+      } // Implement the enqueue() function
+    }
+
+    int dequeue() {
+      if(front==null){
+          return -1;
+      }
+      Node removeNode =front;
+      front=front.next;
+      if(front==null){
+          rear=null;
+      }
+      return removeNode.data;  // Implement the dequeue() function
+    }
+
+    int front() {
+       if(front==null){
+           return -1;
+       }else{
+           return front.data;
+       } // Implement the front() function
+    }
+
+}
