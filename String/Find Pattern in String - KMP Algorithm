@@ -1,0 +1,68 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static boolean findPattern(String p, String s) {
+     if(p.length()==0 && s.length()==0){
+         return false;
+     } 
+      int m=p.length();
+       int n=s.length();
+       int lps[]=new int[m];
+       int j=0;
+      computeLPSArray(p,m,lps);
+      int i=0;
+      while((n-i)>=(m-j)){
+          if(p.charAt(j)==s.charAt(i)){
+              j++;
+              i++;
+          }
+          if(j==m){
+              j=lps[j-1];
+return true;
+          }
+          else if(i<n && p.charAt(j)!=s.charAt(i)){
+              if(j!=0)
+              j=lps[j-1];
+              else
+              i=i+1;
+          }
+      }
+      
+      return false;
+        // Write your code here.
+    }
+   static void computeLPSArray(String p, int m, int lps[])
+    {
+        // length of the previous longest prefix suffix
+        int len = 0;
+        int i = 1;
+        lps[0] = 0; // lps[0] is always 0
+ 
+        // the loop calculates lps[i] for i = 1 to M-1
+        while (i < m) {
+            if (p.charAt(i) == p.charAt(len)) {
+                len++;
+                lps[i] = len;
+                i++;
+            }
+            else // (pat[i] != pat[len])
+            {
+                // This is tricky. Consider the example.
+                // AAACAAAA and i = 7. The idea is similar
+                // to search step.
+                if (len != 0) {
+                    len = lps[len - 1];
+ 
+                    // Also, note that we do not increment
+                    // i here
+                }
+                else // if (len == 0)
+                {
+                    lps[i] = len;
+                    i++;
+                }
+            }
+        }
+       
+}
+}
