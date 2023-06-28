@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+    public static String writeAsYouSpeak(int n) 
+    {
+      String str="1";
+  
+    for (int i = 1; i < n; i++) {
+     str = generator(str);
+    }
+    return str;
+          }
+            // Write your code here.
+    
+    public static String generator(String str)
+  {
+StringBuilder sb=new StringBuilder();
+int cnt=1;
+char currChar=str.charAt(0);
+    for(int i=1;i<str.length();i++){
+      if(str.charAt(i)==currChar){
+        cnt++;
+      }else{
+        sb.append(cnt).append(currChar);
+        cnt=1;
+        currChar=str.charAt(i);
+      }
+    }
+    sb.append(cnt).append(currChar);
+    return sb.toString();
+        }      
+}
