@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.*;
+public class Solution {
+    public static boolean isGraphBipartiteUtil(ArrayList<ArrayList<Integer>> edges, int src, int[] colors){
+        int n=edges.size();        
+Queue<Integer> q=new LinkedList<>();
+q.add(src);
+colors[src]=1;
+//yellow
+        while(!q.isEmpty()){
+            int curr=q.poll();
+            ArrayList<Integer> currEdge=edges.get(curr);
+            for(int j=0;j<n;j++){
+   if(currEdge.get(j)==1 && colors[j]==0){
+colors[j]=-colors[curr];
+q.add(j);
+   }else if(currEdge.get(j)==1 && colors[j]==colors[curr]){
+return false;
+   }
+
+            }
+        }
+return true;
+}
+    public static boolean isGraphBirpatite(ArrayList<ArrayList<Integer>> edges) {
+int n=edges.size();
+int[] colors=new int[n];
+for(int i=0;i<n;i++){
+    if(colors[i]==0){
+        if(!isGraphBipartiteUtil(edges,i,colors))
+        return false;
+    }
+}
+return true;
+        // Write your code here
+    }
+}
+
+
+
+
+
+
+
