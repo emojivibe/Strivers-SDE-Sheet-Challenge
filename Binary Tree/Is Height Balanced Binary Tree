@@ -1,0 +1,37 @@
+import java.util.* ;
+import java.io.*; 
+/*************************************************************
+
+Following is the Binary Tree node structure
+
+class BinaryTreeNode<T> 
+{
+    T data;
+    BinaryTreeNode<T> left;
+    BinaryTreeNode<T> right;
+
+    BinaryTreeNode(T data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+};
+
+*************************************************************/
+public class Solution {
+
+	public static boolean isBalancedBT(BinaryTreeNode<Integer> root) {
+return dfsHeight(root)!=-1;		// Write your code here.
+	}
+private static int dfsHeight(BinaryTreeNode root){
+    if(root==null) return 0;
+    int leftHt=dfsHeight(root.left);
+    if(leftHt==-1) return -1;
+    int rightHt=dfsHeight(root.right);
+    if(rightHt==-1) return -1;
+    if(Math.abs(leftHt-rightHt)>1) return -1;
+    return Math.max(leftHt,rightHt)+1;
+}
+}
+
+
