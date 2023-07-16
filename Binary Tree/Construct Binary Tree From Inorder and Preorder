@@ -1,0 +1,47 @@
+import java.util.* ;
+import java.io.*; 
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    class TreeNode<T>
+    {
+       public:
+        T data;
+        TreeNode<T> left;
+        TreeNode<T> right;
+
+        TreeNode(T data)
+        {
+            this.data = data;
+            left = null;
+            right = null;
+        }
+    };
+
+************************************************************/
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static TreeNode<Integer> buildBinaryTree(ArrayList<Integer>  inorder, ArrayList<Integer>  preorder) 
+    {
+   if(inorder.isEmpty()|| preorder.isEmpty())
+   return null;
+   int rootValue=preorder.get(0);
+   TreeNode<Integer> root=new TreeNode<>(rootValue);
+   int rootIndexInorder=inorder.indexOf(rootValue);
+   ArrayList<Integer> leftInorder=new ArrayList<>(inorder.subList(0,rootIndexInorder));
+   ArrayList<Integer> rightInorder=new ArrayList<>(inorder.subList(rootIndexInorder+1,inorder.size()));
+  
+   ArrayList<Integer> leftPreorder=new ArrayList<>(preorder.subList(1,1+leftInorder.size()));
+   ArrayList<Integer> rightPreorder= new ArrayList<>(preorder.subList(1+leftInorder.size(),preorder.size()));
+
+   root.left=buildBinaryTree(leftInorder,leftPreorder);
+   root.right=buildBinaryTree(rightInorder,rightPreorder);
+
+   return root;     
+//
+}
+}
