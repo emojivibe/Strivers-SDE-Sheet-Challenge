@@ -1,0 +1,59 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+    public static ArrayList<Integer> topologicalSort(ArrayList<ArrayList<Integer>> edges, int v, int e) 
+    {
+       int[] inDeg=new int[v]; //stores the in-degree of each vertex
+  ArrayList<Integer> res= new ArrayList<>();//stores the topological sort res
+  //calculate the in-degree of each vertex
+  ArrayList<ArrayList<Integer>> adjList=new ArrayList<>(v);
+  //initialise the adjacency list
+  for(int i=0;i<v;i++){
+      adjList.add(new ArrayList<>());
+  }
+for(ArrayList<Integer> edge:edges){
+      int u=edge.get(0);
+      int vertex=edge.get(1);
+      adjList.get(u).add(vertex);
+      inDeg[vertex]++;
+  }
+  Queue<Integer> queue= new LinkedList<>();
+  //add all vertices with in-degree 0 to the queue
+  for(int i=0;i<v;i++){
+      if(inDeg[i]==0){
+          queue.add(i);
+      }
+  }
+  //perform topological sort
+  while(!queue.isEmpty()){
+      int vertex=queue.poll();
+      res.add(vertex);
+  //decrease the in-degree of adjacent vertices
+  for(int adjVertex: adjList.get(vertex)){
+     
+inDeg[adjVertex]--;
+if(inDeg[adjVertex]==0){
+          queue.add(adjVertex);
+      }
+      
+      
+      //if the in-degree becomes 0,add it to the queue
+      
+  }
+  }
+  if(res.size()!=v){
+      res.clear();
+  }
+return res;
+       
+       
+       
+       
+       
+       
+       
+       
+        // Write your code here
+    }
+}
