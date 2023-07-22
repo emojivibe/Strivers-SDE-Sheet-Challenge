@@ -1,0 +1,45 @@
+import java.util.*;
+import java.util.ArrayList;
+
+public class Solution {
+  static int INF=(int) 1e9;
+  static int floydWarshall(int n, int m, int src, int dest, ArrayList<ArrayList<Integer>> edges) {
+
+int[][] dist=new int[n+1][n+1];
+//initialise distance with infinity
+for(int i=1;i<=n;i++){
+  for(int j=1;j<=n;j++){
+dist[i][j]=i==j?0:INF;
+  }
+}    
+   //set the weights of edges in the graph
+   for(int i=0;i<m;i++){
+     int u=edges.get(i).get(0);
+     int v=edges.get(i).get(1);
+     int w=edges.get(i).get(2);
+     dist[u][v]=w;
+   }
+   //floyd warshall algorithm
+   for(int k=1;k<=n;k++){
+     for(int i=1;i<=n;i++){
+       for(int j=1;j<=n;j++){
+         if(dist[i][k]!=INF && dist[k][j]!=INF){
+           dist[i][j]=Math.min(dist[i][j],dist[i][k]+ dist[k][j]);
+         }
+       }
+     }
+   }
+   //check for negative cycles
+   
+   //check if the shortest path exists and return the result 
+  
+    return dist[src][dest]>=INF?INF:dist[src][dest];
+  
+    
+    
+    
+    
+    // Write your code here.
+  }
+
+}
