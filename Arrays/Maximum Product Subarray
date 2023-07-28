@@ -1,0 +1,27 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+	public static int maximumProduct(ArrayList<Integer> arr, int n) {
+	if(n==0){
+		return 0;
+	}
+	int max_so_far=arr.get(0);
+	int min_so_far=arr.get(0);
+	int res=max_so_far;
+	for(int i=1;i<n;i++){
+		int curr=arr.get(i);
+		if(curr<0){
+			int temp=max_so_far;
+			max_so_far=min_so_far;
+			min_so_far=temp;
+		}
+		max_so_far=Math.max(curr,max_so_far*curr);
+		min_so_far=Math.min(curr,min_so_far*curr);
+		res=Math.max(res,max_so_far);
+	}
+	return res;
+		// Write your code here.
+	}
+}
