@@ -1,0 +1,23 @@
+import java.util.*;
+public class Solution {
+
+	public static int longestIncreasingSubsequence(int arr[]) {
+	//;
+	//instead of dp =O(n^2) , we use binary search=O(nlogn)
+	int[] dp=new int[arr.length];
+	int len=0;
+	for(int num: arr){
+		int i=Arrays.binarySearch(dp,0,len,num);
+		if(i<0){
+			i=-(i+1);
+
+		}
+		dp[i]=num;
+		if(i==len){
+			len++;
+		}
+	}
+	return len;	//Your code goes here
+	}
+
+}
