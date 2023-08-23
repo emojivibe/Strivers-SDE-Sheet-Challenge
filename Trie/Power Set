@@ -1,0 +1,25 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<ArrayList<Integer>> pwset(ArrayList<Integer> arr) {
+	//
+	ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
+	ans.add(new ArrayList<>());
+	for(Integer num:arr){
+	ArrayList<ArrayList<Integer>> tempSubsets=new ArrayList<>();
+	for(ArrayList<Integer> subset:ans){
+ArrayList<Integer> newSubset=new ArrayList<>(subset);
+newSubset.add(num);
+	tempSubsets.add(newSubset);
+	}
+	ans.addAll(tempSubsets);	
+	}	// WRITE YOUR CODE HERE
+	return ans;
+	}
+public static void main(String[] args) {
+        ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1, 2, 3));
+        ArrayList<ArrayList<Integer>> powerSet = pwset(arr);
+        for (ArrayList<Integer> subset : powerSet) {
+            System.out.println(subset);
+        }
+}
