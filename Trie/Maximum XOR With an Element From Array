@@ -25,5 +25,34 @@ ans.set(i,XOR);
      
         // Write your code here.
     }
-    //
+public static void main(String[] args){
+Scanner sc=new Scanner(System.in);
+int t;
+t=sc.nextInt();
+for(int j=0;j<t;j++)
+{
+int n=sc.nextInt();
+int m=sc.nextInt();
+ArrayList<Integer> arr=new ArrayList<Integer>(n);
+for(int i=0;i<m;i++){
+arr.add(sc.nextInt());
+//}
+ArrayList<ArrayList<Integer>> queries=new ArrayList<ArrayList<Integer>>(m);
+for(int i=0;i<m;i++){
+ArrayList<Integer> temp=new ArrayList<Integer>(m);
+temp.add(sc.nextInt());
+temp.add(sc.nextInt());
+queries.add(temp);
+}
+Solution s=new Solution();
+ArrayList<Integer> ans=new ArrayList<Integer>(n);
+ans=s.maxXorQueries(arr,queries);
+for(int it: ans){
+System.out.println(it+"");
+}
+System.out.println('\n');
     }
+}
+
+
+
