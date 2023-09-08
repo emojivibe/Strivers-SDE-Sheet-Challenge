@@ -1,0 +1,32 @@
+import java.util.*;
+import java.util.Queue;
+public class Solution {
+    public static int[][] floodFill(int[][] image, int n, int m, int x, int y, int p) {
+  //
+int iniNum=image[x][y];
+int[][] ans=image;
+int delRow[]={-1,0,1,0};
+int delCol[]={0,1,0,-1};
+dfs(x,y,ans,image,p,delRow,delCol,iniNum);
+return ans;
+//return image;
+        // Write your code here.
+    }
+    public static void dfs(int a,int b,int[][] ans,int[][] image,int p,int delRow[],int delCol[],int iniNum){
+ans[a][b]=p;
+//initialize n and m again as they are not global variables
+int n=image.length;
+int m=image[0].length;
+ //int Newa=0,Newb=0;
+        for(int j=0;j<4;j++){
+            int Newa=a+delRow[j];
+            int Newb=b+delCol[j];
+  if(Newa>=0 && Newa<n && Newb>=0 && Newb<m && image[Newa][Newb]==iniNum && ans[Newa][Newb]!=p){
+  dfs(Newa,Newb,ans,image,p,delRow,delCol,iniNum);
+  }
+  //image[a][b]=p;       
+
+    }
+   
+    } 
+}
