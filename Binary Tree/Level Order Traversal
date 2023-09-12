@@ -1,0 +1,20 @@
+import java.util.List;
+import java.util.*;
+public class Solution {
+    public static List<Integer> levelOrder(TreeNode<Integer> root){
+      Queue<TreeNode<Integer>> queue=new LinkedList<TreeNode<Integer>>();
+      List<Integer> wrapList=new ArrayList<Integer>();
+      if(root==null) return wrapList;
+      queue.offer(root);
+      while(!queue.isEmpty()){
+          if(queue.peek().left!=null)
+          queue.offer(queue.peek().left);
+          //if()
+          if(queue.peek().right!=null)
+          queue.offer(queue.peek().right);
+          wrapList.add(queue.poll().data);
+      }
+     return wrapList;
+        // Write your code here.
+    }
+}
