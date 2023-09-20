@@ -1,0 +1,69 @@
+import java.util.*;
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+ *****************************************************************///
+public class Solution {
+    //
+    
+    public static int findIntersection(Node firstHead, Node secondHead) {
+//
+int len1 = getLength(firstHead);
+        int len2 = getLength(secondHead);
+
+        // Move head pointer of the longer list ahead by the difference in lengths
+        while (len1 > len2) {
+            firstHead = firstHead.next;
+            len1--;
+        }
+        while (len2 > len1) {
+            secondHead = secondHead.next;
+            len2--;
+        }
+
+        // Traverse in parallel and look for a common node
+        while (firstHead != null && secondHead != null) {
+            if (firstHead == secondHead) {
+                return firstHead.data;
+            }
+            firstHead = firstHead.next;
+            secondHead = secondHead.next;
+        }
+
+        return -1;  // No intersection
+    }
+
+    private static int getLength(Node head) {
+        int length = 0;
+        while (head != null) {
+            length++;
+            head = head.next;
+        }
+        return length;
+    }
+}
+//Here, the getLength function calculates the length of a given linked list. The findIntersection function calculates the lengths of both lists and adjusts the starting point of the longer list to find the intersection. If there is an intersection, it will return the node; otherwise, it will return null.
+
+
