@@ -1,0 +1,67 @@
+import java.util.HashSet;
+import java.util.*;
+//import org.w3c.dom.Node;
+
+/****************************************************************
+
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node()
+     {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data)
+     {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next)
+     {
+         this.data = data;
+         this.next = next;
+     }
+ }
+
+ *****************************************************************/
+
+public class Solution {
+
+    public static Node firstNode(Node head) {
+     //Node cur=null;
+     HashSet<Node> st=new HashSet<>();
+     while(head!=null){
+         if(st.contains(head)) return head;
+         st.add(head);
+         head=head.next;
+     }
+     return null;
+     //
+        // Wretyrite your code here.
+    }
+public static void main(String[] args){
+Node head=null;
+head=insertNode(head,1);
+head=insertNode(head,2);
+head=insertNode(head,3);
+head=insertNode(head,4);
+head=insertNode(head,3);
+head=insertNode(head,6);
+head=insertNode(head,10);
+createCycle(head,2);
+Node nodeReceive=detectCycle(head);
+if(nodeReceive==null) System.out.println("No Cycle");
+else{
+Node temp=head;
+int pos=0;
+while(temp!=nodeReceive){
+++pos;
+temp=temp.next;
+}
+System.out.println(pos);
+}
+}
