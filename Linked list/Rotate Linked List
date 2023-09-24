@@ -52,6 +52,15 @@ return head;
 
         // Write your code here.
     }
+//utility function to print list
+void printList(Node head){
+while(head.next!=null){
+System.out.println(head.num+"->");
+head=head.next;
+}
+System.out.println(head.num);
+}
+
 }
 
 
