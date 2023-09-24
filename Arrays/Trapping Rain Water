@@ -1,0 +1,30 @@
+
+import java.util.*;
+public class Solution {
+    public static long getTrappedWater(long []arr, int n) {
+    int waterTrap=0; 
+     long sum=0;
+     for(int i=0;i<n;i++){
+int j=i;
+long lmax=0;
+long rMax=0;
+
+while(j>=0){
+lmax=Math.max(lmax,arr[j]);
+j--;
+}
+j=i;
+while(j<n){
+  rMax=Math.max(rMax,arr[j]);
+  j++;  
+}
+waterTrap+=Math.min(lmax,rMax)-arr[i];
+     } 
+    return waterTrap;  
+      
+      
+      
+      
+        // Write your code here.
+    }
+}
