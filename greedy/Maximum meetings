@@ -39,16 +39,32 @@ Collections.sort(meet,new sorts());
     limit=meet.get(0).end;
 //pos=meet.get(0).pos;
     for(int i=1;i<meet.size();i++){
-        if(meet.get(i).start>limit)
+        if(meet.get(i).start>limit){
+        limit=meet.get(i).end;
         cnt++;
-          
+        }     
     }
   return cnt;
     
     
         // Write your code here.
     }
+public static void main(String[] args){
+int start[]={2,5,6,7,8};
+int end[]={3,5,4,8,9};
+maximumMeetings(start,end);
 }
+}
+
+
+
+
+
+
+
+
+
+    
 
 
 
