@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Solution {
+    static class Val{
+int val;
+int freq;
+ Val(int val,int freq){
+this.val=val;
+this.freq=freq;
+}
+
+}
+    public static int[] KMostFrequent(int n, int k, int[] arr) {
+    Arrays.sort(arr);
+    
+    Map<Integer,Integer> map=new HashMap<>();
+    for(int i=0;i<n;i++){
+        map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+    }
+    PriorityQueue<Val> pq=new PriorityQueue<>((a,b)->{
+if(a.freq!=b.freq)
+{
+    return b.freq-a.freq;
+}
+return a.val-b.val;
+    });
+for(Map.Entry<Integer,Integer> e:map.entrySet()){
+    pq.offer(new Val(e.getKey(),e.getValue()));
+}
+//
+int[] ans=new int[k];
+for(int i=0;i<k;i++){
+    ans[i]=pq.poll().val;
+}
+return ans;
+    // Write your code here.
+    }
+}
+
+
+
+
+
