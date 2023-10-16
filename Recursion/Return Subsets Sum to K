@@ -1,0 +1,35 @@
+import java.util.*;
+public class Solution 
+{
+    public static ArrayList<ArrayList<Integer>> findSubsetsThatSumToK(ArrayList<Integer> arr, int n, int k) 
+	{
+        ArrayList<Integer> ds=new ArrayList<>();
+     ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
+     findSubsetsThatSumUtil(0,arr,k,ans,ds);  
+       //Collections.sort(findSubsetsThatSumToK);
+       return ans;
+       
+       
+        // Write your code here.
+    }
+    static void findSubsetsThatSumUtil(int ind,ArrayList<Integer> arr,int k, ArrayList<ArrayList<Integer>> ans, ArrayList<Integer> ds){
+        int n=arr.size();
+        if(ind==n){
+            if(k==0){
+ans.add(new ArrayList<>(ds));
+//modifications to ds willresult in all the lists being changed
+            }
+           //findSubsetsThatSumToK.add(sum);
+           return; 
+        }
+      //
+          ds.add(arr.get(ind));
+          findSubsetsThatSumUtil(ind+1,arr,k-arr.get(ind),ans,ds);
+          
+          ds.remove(ds.size()-1);
+       
+findSubsetsThatSumUtil(ind+1,arr,k,ans,ds);
+
+        //
+    }
+}
