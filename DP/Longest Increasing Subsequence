@@ -1,1 +1,38 @@
+import java.util.*;
+public class Solution {
+
+	public static int longestIncreasingSubsequence(int arr[]) {
+	int n=arr.length;
+int[][] dp=new int[n][n+1];
+for(int row[]:dp){
+	Arrays.fill(row,-1);
+}
+	return findDp(n,dp,0,arr,-1);
+	//if(prev_idx==0)		//Your code goes here
+	}
+public static int findDp(int n,int dp[][],int ind,int arr[],int prev_idx){
+//int prev_idx=-1;
+if(ind==n)
+return 0;
+
+if(dp[ind][prev_idx+1]!=-1)
+return dp[ind][prev_idx+1];
+int notTake=0+findDp(n,dp,ind+1,arr,prev_idx);
+	int take=0;
+	//why  0?
+
+	if(prev_idx==-1 && arr[ind]>arr[prev_idx]){
+	take=1+findDp(n,dp,ind+1,arr,ind);
+	}
+	dp[ind][prev_idx+1]=Math.max(notTake,take);
+
+	return dp[ind][prev_idx+1];
+
+
+}
+}
+
+
+
+
 
